@@ -1,0 +1,52 @@
+#include<stdio.h>
+int main()
+{
+	int n;
+	while(scanf("%d",&n)!=EOF)
+	{
+		int i,j=0,t=0,a[100],b[100];
+		if(n==0)
+		{
+			printf("0\n");
+		}
+		else
+		{
+			for(i=n;i!=0;)
+			{
+				a[t]=i%2;
+				i=i/2;
+				if(i==0)
+				{
+					break;
+				}
+				else
+				{
+					t++;
+				}
+			}
+			i=t;
+			while(a[i]!=1)
+			{
+				printf("%d",a[i]);
+				i--;
+			}
+			b[j]=1;
+			printf("1");
+			for(i--;i>=0;i--)
+			{
+				j++;
+				if(a[i]==a[i+1])
+				{
+					b[j]=0;
+				}
+				else
+				{
+					b[j]=1;
+				}
+				printf("%d",b[j]);
+			}
+			printf("\n");
+		}
+	}
+	return 0;
+}

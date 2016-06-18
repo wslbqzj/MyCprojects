@@ -1,0 +1,69 @@
+#include <iostream>
+#include <stdlib.h>
+using namespace std;
+typedef int KeyType;
+typedef int InfoType;
+typedef struct node
+{
+	KeyType key;
+	InfoType data;
+}RecType;
+
+void sift(RecType R[],int low,int high)
+{
+	int i = low,j = 2 * i;
+	RecType tmp = R[i];
+	while(j <= high)
+	{
+		if (j < high && R[j].key < R[j+1].key)
+			j++;
+		if (tmp.key < R[j].key)
+		{
+			R[i] = R[j];
+			i = j;
+			j = 2 * i;
+		}
+		else break;
+	}
+	R[i] = tmp;
+}
+void HeapSort(RecType R[],int n)
+{
+	int i;
+	RecType tmp;
+	for (i = n/2;i >= 1;i--)//循环建立初始堆
+		sift(R,i,n);
+	//for (i = n;i >= n;i--)//进行n-1趟堆排序，每一趟堆排序的元素个数减1
+	{
+		tmp = R[1];//将最后一个元素同当前区间内R[1]对换
+		R[1] = R[n];
+		R[n] = tmp;//筛选R[1]节点，得到i-1个节点的堆
+		//sift(R,1,n-1);
+	}
+}
+void Display(RecType R[],int n)
+{
+	int i;
+	for (i = 1;i <= n;i++)
+	{
+		if (i == 1)
+			cout << R[i].key;
+		else 
+			cout << " " << R[i].key;
+	}
+}
+int main()
+{
+	int n,i;
+	while(cin >> n)
+	{
+		RecType Rect[500];
+		for (i = 1;i <= n;i++)
+		{
+			cin >> Rect[i].key;
+		}
+		HeapSort(Rect,n);
+		Display(Rect,n);
+	}
+	return 0;
+}

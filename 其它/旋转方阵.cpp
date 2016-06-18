@@ -1,0 +1,50 @@
+#include<stdio.h>
+int main()
+{
+	int n,i=0,j=0,a=0,b=0,c=1,d=0,e=1,p=1,str[20][20];
+	scanf("%d",&n);
+	a=n;
+	while(p<=n*n)
+	{
+		for(i=b;i<a;i++)
+		{
+			str[i][j]=p;
+			p++;
+		}
+		i--;
+		for(j=c;j<a;j++)
+		{
+			str[i][j]=p;
+			p++;
+		}
+		j--;
+		i--;
+		for(;i>=d;i--)
+		{
+			str[i][j]=p;
+			p++;
+		}
+		j--;
+		i++;
+		for(;j>=e;j--)
+		{
+			str[i][j]=p;
+			p++;
+		}
+		j++;
+		a--;
+		b++;
+		c++;
+		d++;
+		e++;
+	}
+	for(i=0;i<n;i++)
+	{
+		for(j=0;j<n;j++)
+		{
+			printf("%-4d",str[i][j]);
+		}
+		printf("\n");
+	}
+	return 0;
+}
